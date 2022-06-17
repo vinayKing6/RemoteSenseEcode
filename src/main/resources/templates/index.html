@@ -10,6 +10,15 @@
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <style>
+        li {
+            list-style: none;
+        }
+
+        a {
+            color: #666;
+            text-decoration: none;
+        }
+
         .navbar {
             top: 0;
             width: 100%;
@@ -18,35 +27,91 @@
         }
 
         .swiper {
-            height: 400px;
+            position: relative;
+            height: 500px;
         }
 
-        img {
+        .hidden {
+            position: absolute;
+            height: 100%;
             width: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
         }
+
+        .hidden h1 {
+            margin-top: 160px;
+            margin-left: 300px;
+            font-size: 100px;
+            color: rgb(255, 255, 255);
+        }
+
+        .detarget-slide {
+            background-image: url("/images/DeTarget.jpeg");
+            background-size: 100% 100%;
+        }
+
+        .gettarget-slide {
+            background-image: url("/images/GetTarget.png");
+            background-size: 100% 100%;
+        }
+
+        .classgeo-slide {
+            background-image: url("/images/ClassGeo.jpg");
+            background-size: 100% 100%;
+        }
+
+        .dechange-slide {
+            background-image: url("/images/DeChange.jpg");
+            background-size: 100% 100%;
+        }
+
 
         .d-flex {
-            width: 80%;
+            width: 90%;
             margin: 0 auto;
+            justify-content: center;
+            /* 水平居中 */
             align-items: center;
+            /* 垂直居中 */
             height: 100%;
         }
 
         .swiper {
-            margin-top: 80px;
-            border: solid black 1px;
+            margin-top: 120px;
+            border: 1px solid #ccc;
         }
 
         /* Style the tab */
         .tab {
-            margin-top: 100px;
+            position: relative;
+            margin-top: 150px;
             float: left;
             border: 1px solid #ccc;
             background-color: #f1f1f1;
             width: 25%;
-            height: 400px;
+            height: 600px;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            /* 水平居中 */
+            align-items: center;
+        }
+
+        .tablinks {
+            height: 150px;
+        }
+
+        .title {
+            position: absolute;
+            width: 150px;
+            height: 50px;
+            border: 1px solid #ccc;
+            top: -80px;
+            left: 0;
+            line-height: 50px;
+            text-align: center;
+            background-color: rgb(185, 95, 95);
+            font-size: 20px;
         }
 
         /* Style the buttons inside the tab */
@@ -56,14 +121,14 @@
             color: #ccc;
             padding: 22px 16px;
             width: 100%;
-            height: 100px;
             border: none;
             outline: none;
             text-align: left;
             cursor: pointer;
             transition: 0.3s;
-            font-size: 17px;
+            font-size: 20px;
             align-self: stretch;
+            text-align: center;
         }
 
         /* Change background color of buttons on hover */
@@ -78,16 +143,60 @@
 
         /* Style the tab content */
         .tabcontent {
-            margin-top: 100px;
+            margin-top: 150px;
             float: left;
             padding: 0px 12px;
             border: 1px solid #ccc;
             width: 75%;
             border-left: none;
-            height: 400px;
+            height: 600px;
         }
 
-        .tab {}
+        p {
+            text-indent: 30px;
+        }
+
+        img {
+            margin-left: 30px;
+        }
+
+        .tail {
+            margin-top: 900px;
+            height: 300px;
+            width: 100%;
+            background-color: #ccc;
+        }
+
+        .link-box {
+            height: 100%;
+            width: 100%;
+        }
+
+        .tail-wraper {
+            height: 100%;
+            width: 1140px;
+            margin: 0 auto;
+        }
+
+        .line {
+            height: 30px;
+            width: 30px;
+        }
+
+        .link-box span {
+            display: block;
+            margin-top: 40px;
+            font-size: 25px;
+        }
+
+        .link-box ul {
+            margin-left: 30px;
+        }
+
+        .link-box li {
+            margin-top: 15px;
+            font-size: 20px;
+        }
     </style>
 </head>
 
@@ -130,23 +239,26 @@
     <div class="container">
         <div class="swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="d-flex">
-                        <div>
-                            <h1><span class="text-warning">变化检测</span></h1>
-                            <p class="my-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Perferendis optio modi veniam, fuga, ipsum dolores consectetur ducimus corporis,
-                                nesciunt dignissimos eos
-                                inventore. In alias, iure recusandae laborum quam veniam voluptatibus!
-                            </p>
-                            <a href="#" class="btn btn-primary">了解更多</a>
-                        </div>
-                        <img th:src="@{/images/de_change.png}" alt="" class="w-50">
+                <div class="swiper-slide detarget-slide">
+                    <div class="hidden">
+                        <h1>目标检测</h1>
                     </div>
                 </div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
-                <div class="swiper-slide">Slide 3</div>
+                <div class="swiper-slide gettarget-slide">
+                    <div class="hidden">
+                        <h1>目标提取</h1>
+                    </div>
+                </div>
+                <div class="swiper-slide classgeo-slide">
+                    <div class="hidden">
+                        <h1>地物分类</h1>
+                    </div>
+                </div>
+                <div class="swiper-slide dechange-slide">
+                    <div class="hidden">
+                        <h1>变化检测</h1>
+                    </div>
+                </div>
             </div>
             <!-- 如果需要分页器 -->
             <div class="swiper-pagination"></div>
@@ -162,6 +274,7 @@
 
     <div class="container">
         <div class="tab">
+            <div class="title">产品与服务</div>
             <button class="tablinks" onclick="openCity(event, 'de_target')" id="defaultOpen">目标检测</button>
             <button class="tablinks" onclick="openCity(event, 'de_change')">变化检测</button>
             <button class="tablinks" onclick="openCity(event, 'get_target')">目标提取</button>
@@ -169,37 +282,82 @@
         </div>
 
         <div id="de_target" class="tabcontent">
-            <h3>目标检测</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. At maxime eaque consequuntur,
-                fugit quia praesentium molestiae iure,
-                eligendi odit placeat amet minima explicabo magnam vitae provident id ipsam quasi? Eaque.</p>
+            <div class="d-flex">
+                <div>
+                    <h1><span class="text-warning">目标检测</span></h1>
+                    <p class="my-4">
+                        目标检测，也叫目标提取，是一种基于目标几何和统计特征的图像分割。
+                        它将目标的分割和识别合二为一，其准确性和实时性是整个系统的一项重要能力。
+                        随着计算机技术的发展和计算机视觉原理的广泛应用，利用计算机图像处理技术对
+                        目标进行实时跟踪研究越来越热门，对目标进行动态实时跟踪定位在智能化交通系统、智
+                        能监控系统、军事目标检测及医学导航手术中手术器械定位等方面具有广泛的应用价值。
+
+                    </p>
+                    <a th:href="@{/DeTarget}" class="btn btn-primary">点击尝试</a>
+                </div>
+                <img th:src="@{/images/de_target.png}" alt="" class="w-50">
+            </div>
         </div>
 
         <div id="de_change" class="tabcontent">
-            <h3>变化检测</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A aut quo nostrum earum et facilis iste
-                laudantium vitae saepe consectetur,
-                quae error, expedita accusantium sint, voluptatem iusto.
-                Fuga, debitis placeat!</p>
+            <div class="d-flex">
+                <div>
+                    <h1><span class="text-warning">变化检测</span></h1>
+                    <p class="my-4">
+                        变化检测是从不同时期的遥感数据中定量分析和确定地表变化的特征与过程；
+                        遥感变化检测是一个确定和评价各种地表现象随时间发生变化的过程；遥感变化检
+                        测是遥感瞬时视场中地表特征随时间发生的变化引起两个时期影像像元光谱响应的变化。
+                    </p>
+                    <a th:href="@{/DeChange}" class="btn btn-primary">点击尝试</a>
+                </div>
+                <img th:src="@{/images/de_change.png}" alt="" class="w-50">
+            </div>
         </div>
-
         <div id="get_target" class="tabcontent">
-            <h3>目标提取</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptatibus qui harum a sed cumque aperiam
-                perferendis voluptatem,
-                voluptatum exercitationem? Quia nulla quasi recusandae fugiat?
-                Blanditiis quidem modi magni accusantium.</p>
+            <div class="d-flex">
+                <div>
+                    <h1><span class="text-warning">目标提取</span></h1>
+                    <p class="my-4">
+                        目标提取是指单幅图像或序列图像中将感兴趣的目标与背景分割开来，从图像中识
+                        别和解译有意义的物体实体而提取不同的图像特征的操作。
+                        目标提取是一个至关重要的环节，它直接决定后续识别和跟踪性能的好坏。
+                        现阶段，目标提取的应用范围很广，在计算机视觉提取人脸特征和指纹等，
+                        在摄影测量与遥感中，用于特征点线的提取来进行影像匹配和三维建模等。
+                    </p>
+                    <a th:href="@{/GetTarget}" class="btn btn-primary">点击尝试</a>
+                </div>
+                <img th:src="@{/images/get_target.png}" alt="" class="w-50">
+            </div>
         </div>
 
         <div id="class_geo" class="tabcontent">
-            <h3>地物分类</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere obcaecati consectetur mollitia veritatis
-                qui illo velit quae minus vel officia,
-                consequuntur molestiae vitae porro ipsum ab
-                ad aspernatur accusantium. Nemo.</p>
+            <div class="d-flex">
+                <div>
+                    <h1><span class="text-warning">地物分类</span></h1>
+                    <p class="my-4">
+                        计算机利用统计方法,将遥感图象相似亮度范围的像元归类的方法。又称为计算机自动识别。
+                        它需要选择一个有代表性的试验样区作为训练场，研究样区各种地物的光谱特征，检验全区所有地物
+                        ，并计算出标志每种地物类型的各波段一系列光谱统计度量参数。
+                    </p>
+                    <a th:href="@{/ClassGeo}" class="btn btn-primary">点击尝试</a>
+                </div>
+                <img th:src="@{/images/class_geo.png}" alt="" class="w-50">
+            </div>
         </div>
     </div>
 
+    <div class="tail">
+        <div class="tail-wraper">
+            <div class="link-box">
+                <div class="line"></div>
+                <span>友情链接</span>
+                <ul class="links">
+
+                    <li><a href="www.baidu.com">百度</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -211,6 +369,7 @@
     <script>
         var mySwiper = new Swiper('.swiper', {
             loop: true, // 循环模式选项
+            autoplay: true,
 
             // 如果需要分页器
             pagination: {
@@ -232,6 +391,7 @@
         function openCity(evt, cityName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
+            console.log(tabcontent)
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
             }

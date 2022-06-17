@@ -60,6 +60,12 @@ def de_target(connectionSocket,root,base_dir,image_1,user,classes):
 
     if classes.strip()=='playground':
         model_path='/target/classes/static/python/608x608_playground'
+    elif classes.strip()=='aircraft':
+        model_path='/target/classes/static/python/608x608_aircraft'
+    elif classes.strip()=='overpass':
+        model_path='/target/classes/static/python/608x608_overpass'
+    else:
+        model_path='/target/classes/static/python/608x608_oiltank'
 
     predictor = Predictor(root+model_path,use_gpu=True)
     res = predictor.predict((image_1))

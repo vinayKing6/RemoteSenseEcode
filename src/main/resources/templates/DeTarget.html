@@ -35,14 +35,14 @@
             height: 30px;
             width: 100px;
             position: absolute;
-            left: 120px;
-            top: 26px;
+            left: -150px;
+            top: 15px;
         }
 
         label {
             position: absolute;
-            left: 40px;
-            top: 26px;
+            left: -240px;
+            top: 15px;
         }
 
         img {
@@ -139,14 +139,14 @@
     <div class="container">
         <h1><span class="text-warning">目标检测</span></h1>
         <div class="image_wraper">
-            <label for="classes">选择类别:</label>
-            <select name="classes" id="classes">
-                <option value="playground">操场</option>
-                <option value="aircraft">飞机</option>
-                <option value="oiltank">油罐</option>
-                <option value="overpass">立交桥</option>
-            </select>
             <div class="single_wraper">
+                <label for="classes">选择类别:</label>
+                <select name="classes" id="classes">
+                    <option value="playground">操场</option>
+                    <option value="aircraft">飞机</option>
+                    <option value="oiltank">油罐</option>
+                    <option value="overpass">立交桥</option>
+                </select>
                 <h3>图片A</h3>
                 <input type="file" name="image1" id="image1" onchange="postData('#image1','A')">
                 <img class="A" src="" alt="">
