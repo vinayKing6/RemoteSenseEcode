@@ -1,0 +1,8 @@
+
+#logging:
+#  level:
+#    root: WARN
+# 显示指定级别的日志，默认DEBUG
+
+my-config:
+  file-path:/media/vinay/Data/myFile/sharing_files/from_ubuntu/firstSpringBoot/target/classes/static/product/DeChange

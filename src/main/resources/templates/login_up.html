@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 字体设置 -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login_up.css}">
+</head>
+<body>
+    <div class="container" th:classappend="${register}? 'sign-up-mode' ">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form th:action="@{/login}" method="post" class="sign-in-form">
+                    <h2 class="title">登录</h2>
+                    <div class="input-field">
+                        <!-- i 字体设置 -->
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="用户名" name="name" id="">
+                    </div>
+                     <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="登录密码" name="password" id="">
+                        <span th:if="${param.error}">用户名或密码错误!</span>
+                    </div>
+                    <input type="submit" value="登录" class="btn solid">
+                </form>
+
+                <form th:action="@{/register}" method="post" class="sign-up-form" >
+                    <h2 class="title">注册</h2>
+                    <div class="input-field">
+                        <!-- i 字体设置 -->
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="用户名" name="name" id="">
+                        <span th:if="${formCheck}" th:text="${checkTips.get('name')}"></span>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="text" placeholder="邮箱" name="email" id="">
+                        <span th:if="${formCheck}" th:text="${checkTips.get('email')}"></span>
+                    </div>
+                     <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="登录密码" name="password" id="">
+                         <span th:if="${formCheck}" th:text="${checkTips.get('password')}"></span>
+                    </div>
+                    <input type="submit" value="注册" class="btn solid">
+                </form>
+               
+            </div>
+        </div>
+
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>还没账号?</h3>
+                    <p></p>
+                    <button class="btn transparent" id="sign-up-btn">注册</button>
+                </div>
+
+                <img src="images/login.svg" alt="" class="image">
+            </div>
+             <div class="panel right-panel">
+                <div class="content">
+                    <h3>已有账号?</h3>
+                    <p></p>
+                    <button class="btn transparent" id="sign-in-btn">登录</button>
+                </div>
+
+                <img th:src="@{/images/register.svg}" alt="" class="image">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <script th:src="@{/javascript/jquery-3.6.0.js}"></script>
+    <script>
+        $("#sign-up-btn").click(function(){
+            $(".container").addClass("sign-up-mode")
+        })
+
+        $("#sign-in-btn").click(function(){
+            $(".container").removeClass("sign-up-mode")
+        })
+    </script>
+</body>
+</html>

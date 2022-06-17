@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <style>
+        .navbar {
+            top: 0;
+            width: 100%;
+            position: fixed;
+            z-index: 3;
+        }
+
+        .swiper {
+            height: 400px;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .d-flex {
+            width: 80%;
+            margin: 0 auto;
+            align-items: center;
+            height: 100%;
+        }
+
+        .swiper {
+            margin-top: 80px;
+            border: solid black 1px;
+        }
+
+        /* Style the tab */
+        .tab {
+            margin-top: 100px;
+            float: left;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            width: 25%;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            display: block;
+            background-color: inherit;
+            color: #ccc;
+            padding: 22px 16px;
+            width: 100%;
+            height: 100px;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 17px;
+            align-self: stretch;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current "tab button" class */
+        .tab button.active {
+            color: black;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            margin-top: 100px;
+            float: left;
+            padding: 0px 12px;
+            border: 1px solid #ccc;
+            width: 75%;
+            border-left: none;
+            height: 400px;
+        }
+
+        .tab {}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a href="#" class="navbar-brand">遥感解译系统</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a th:href="@{/DeTarget}" class="nav-link">目标检测</a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/DeChange}" class="nav-link">变化检测</a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/GetTarget}" class="nav-link">目标提取</a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:href="@{/ClassGeo}" class="nav-link">地物分类</a>
+                    </li>
+                    <li class="nav-item">
+                        <a th:if="${user}" class="nav-link" th:text="${user.getName()}"></a>
+                    </li>
+                    <li class="nav-item">
+                        <form th:if="${user}" th:action="@{/logout}" method="post">
+                            <input class="nav-link btn btn-primary" type="submit" value="退出">
+                        </form>
+                        <a th:unless="${user}" th:href="@{/login}" class="nav-link btn btn-primary">登录</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="d-flex">
+                        <div>
+                            <h1><span class="text-warning">变化检测</span></h1>
+                            <p class="my-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Perferendis optio modi veniam, fuga, ipsum dolores consectetur ducimus corporis,
+                                nesciunt dignissimos eos
+                                inventore. In alias, iure recusandae laborum quam veniam voluptatibus!
+                            </p>
+                            <a href="#" class="btn btn-primary">了解更多</a>
+                        </div>
+                        <img th:src="@{/images/de_change.png}" alt="" class="w-50">
+                    </div>
+                </div>
+                <div class="swiper-slide">Slide 2</div>
+                <div class="swiper-slide">Slide 3</div>
+                <div class="swiper-slide">Slide 3</div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- 如果需要滚动条
+                    <div class="swiper-scrollbar"></div> -->
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="tab">
+            <button class="tablinks" onclick="openCity(event, 'de_target')" id="defaultOpen">目标检测</button>
+            <button class="tablinks" onclick="openCity(event, 'de_change')">变化检测</button>
+            <button class="tablinks" onclick="openCity(event, 'get_target')">目标提取</button>
+            <button class="tablinks" onclick="openCity(event,'class_geo')">地物分类</button>
+        </div>
+
+        <div id="de_target" class="tabcontent">
+            <h3>目标检测</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. At maxime eaque consequuntur,
+                fugit quia praesentium molestiae iure,
+                eligendi odit placeat amet minima explicabo magnam vitae provident id ipsam quasi? Eaque.</p>
+        </div>
+
+        <div id="de_change" class="tabcontent">
+            <h3>变化检测</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A aut quo nostrum earum et facilis iste
+                laudantium vitae saepe consectetur,
+                quae error, expedita accusantium sint, voluptatem iusto.
+                Fuga, debitis placeat!</p>
+        </div>
+
+        <div id="get_target" class="tabcontent">
+            <h3>目标提取</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptatibus qui harum a sed cumque aperiam
+                perferendis voluptatem,
+                voluptatum exercitationem? Quia nulla quasi recusandae fugiat?
+                Blanditiis quidem modi magni accusantium.</p>
+        </div>
+
+        <div id="class_geo" class="tabcontent">
+            <h3>地物分类</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere obcaecati consectetur mollitia veritatis
+                qui illo velit quae minus vel officia,
+                consequuntur molestiae vitae porro ipsum ab
+                ad aspernatur accusantium. Nemo.</p>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script>
+        var mySwiper = new Swiper('.swiper', {
+            loop: true, // 循环模式选项
+
+            // 如果需要分页器
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // 如果需要前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // 如果需要滚动条
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        })
+
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
+</body>
+
+</html>

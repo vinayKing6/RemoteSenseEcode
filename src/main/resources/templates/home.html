@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>hello world!</h1>
+<img th:src="@{/images/test.jpg}">
+<div>
+    <h1 th:text="${hello.getEmail()}"></h1>
+    <form th:action="@{/logout}" method="post" >
+        <input type="submit">
+    </form>
+    <div th:each="role,state: ${hello.getAuthorities()}">
+        <h1 th:text="${role.toString()}"></h1>
+    </div>
+</div>
+</body>
+</html>

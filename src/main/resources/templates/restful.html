@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+<button>get data</button>
+<script th:src="@{/javascript/jquery-3.6.0.js}"></script>
+<script>
+    $("button").click(function(){
+            $.get("/restful/user", function(data, status){
+            $("div").text(data)
+        });
+    })
+</script>
+</body>
+</html>
