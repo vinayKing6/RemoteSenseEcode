@@ -33,8 +33,7 @@ public class RestfulController {
     @Autowired
     EntityLinks entityLinks;
 
-    private String AbsoluteFilePath =
-            "/media/vinay/Data/myFile/sharing_files/from_ubuntu/firstSpringBoot";
+    private String AbsoluteFilePath = System.getProperty("user.dir");
 
 
 

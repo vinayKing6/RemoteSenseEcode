@@ -8,6 +8,7 @@ import cv2 as cv
 import time
 from concurrent.futures import ThreadPoolExecutor
 from paddlers.tasks.utils.visualize import visualize_detection
+import sys
 
 def INFO(info):
     print('FROM PYTHON: {}'.format(info))
@@ -124,8 +125,11 @@ if __name__ == '__main__':
         serverSocket.bind(('', 9292))
         serverSocket.listen(1)
 
-        root = '/media/vinay/Data/myFile/sharing_files/from_ubuntu/firstSpringBoot'
+        # root = '/media/vinay/Data/myFile/sharing_files/from_ubuntu/firstSpringBoot'
+        root=sys.argv[1]
         base_dir = root+'/target/classes/static'
+
+        INFO(root)
 
         while True:
             try:

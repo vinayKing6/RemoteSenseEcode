@@ -9,7 +9,8 @@ public class RuntimePython implements Runnable{
     public void run() {
         Process proc;
         try {
-            proc = Runtime.getRuntime().exec("python3 src/main/resources/static/python/product_thread.py");
+            String root=System.getProperty("user.dir");
+            proc = Runtime.getRuntime().exec("python3 src/main/resources/static/python/product_thread.py "+root);
             BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
             String line = null;
             while ((line = in.readLine()) != null) {
