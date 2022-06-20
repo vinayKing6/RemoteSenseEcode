@@ -6,22 +6,20 @@ import java.io.InputStreamReader;
 
 public class RuntimePython implements Runnable{
 
-    public void run() {
-        Process proc;
-        try {
-            String root=System.getProperty("user.dir");
-            proc = Runtime.getRuntime().exec("python3 src/main/resources/static/python/product_thread.py "+root);
-            BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-            String line = null;
-            while ((line = in.readLine()) != null) {
-                System.out.println(line);
-            }
-            in.close();
-            proc.waitFor();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+	public void run() {
+		Process proc;
+		try {
+			String root=System.getProperty("user.dir");
+			proc = Runtime.getRuntime().exec("python3 src/main/resources/static/python/product_thread.py "+root);
+			BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+			String line = null;
+			while ((line = in.readLine()) != null) {
+				System.out.println(line);
+			}
+			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+
+	}
 }

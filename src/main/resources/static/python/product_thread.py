@@ -10,6 +10,10 @@ from concurrent.futures import ThreadPoolExecutor
 from paddlers.tasks.utils.visualize import visualize_detection
 import sys
 
+def killport(port):
+    command='''kill -9 $(netstat -nlp | grep :'''+str(port)+''' | awk '{print $7}' | awk -F"/" '{ print $1 }')'''
+    os.system(command) 
+
 def INFO(info):
     print('FROM PYTHON: {}'.format(info))
 
@@ -44,7 +48,11 @@ def get_target(connectionSocket,root,base_dir,image_1,user):
                                   use_gpu=True)
     res = predictor.predict((image_1))
     cm_1500x1500 = res['label_map']
-    cv.imwrite(absolute_pre_name, (cm_1500x1500*255).astype('uint8'))
+    try:
+        cv.imwrite(absolute_pre_name, (cm_1500x1500*255).astype('uint8'))
+    except Exception as e:
+        print(e)
+
 
     INFO(pre_name)
 
@@ -120,8 +128,11 @@ def class_geo(connectionSocket,root,base_dir,image_1,user):
 if __name__ == '__main__':
 
     with ThreadPoolExecutor(max_workers=10) as pool:
+        #killport(9292)
+        INFO('test')
 
         serverSocket = socket(AF_INET, SOCK_STREAM)
+        serverSocket.setsockopt(SOL_SOCKET,SO_REUSEPORT,1)
         serverSocket.bind(('', 9292))
         serverSocket.listen(1)
 
