@@ -36,13 +36,6 @@ public class RestfulController {
     private String AbsoluteFilePath = System.getProperty("user.dir");
 
 
-
-    @GetMapping("/user")
-    public Iterable<User> allUsers() {
-        PageRequest page = PageRequest.of(0, 2, Sort.by("createAt").descending());
-        return userRepository.findAll(page).getContent();
-    }
-
     @PostMapping("/DeChangeUpLoadFiles")
     public Map<String, Object> DeChangeUpLoadFiles(
             @RequestParam("image") MultipartFile image1,

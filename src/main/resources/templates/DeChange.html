@@ -35,7 +35,7 @@
             display: inline-block;
             width: 400px;
             height: 400px;
-            border: 1px solid black;
+            border-radius: 9%;
 
         }
 
@@ -51,6 +51,8 @@
             display: inline-block;
             margin-left: 40px;
             margin-top: 25px;
+            border: 5px solid rgb(139, 139, 139);
+            border-radius: 10%;
         }
 
         .single_wraper:last-child {
@@ -79,6 +81,78 @@
             width: 100px;
             top: 420px;
             left: 150px;
+        }
+
+        .load-animate {
+            position: relative;
+            display: none;
+            width: 400px;
+            height: 400px;
+            left: 0;
+            top: 0;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.5);
+            color: #ffffff;
+            font-size: 50px;
+            border-radius: 9%;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 26px;
+            margin-top: 125px;
+            color: #ffffff;
+        }
+
+        .loader-05 {
+            width: 1em;
+            height: 1em;
+            border: .2em solid transparent;
+            border-top-color: currentcolor;
+            border-radius: 50%;
+            -webkit-animation: 1s loader-05 linear infinite;
+            animation: 1s loader-05 linear infinite;
+            position: relative;
+            display: block;
+            margin: 0 auto;
+            margin-top: 15px;
+        }
+
+        .loader-05:before {
+            content: '';
+            display: block;
+            width: inherit;
+            height: inherit;
+            position: absolute;
+            top: -.2em;
+            left: -.2em;
+            border: .2em solid currentcolor;
+            border-radius: 50%;
+            opacity: .5;
+        }
+
+        @-webkit-keyframes loader-05 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes loader-05 {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
@@ -126,18 +200,35 @@
         <div class="image_wraper">
             <div class="single_wraper">
                 <h3>图片A</h3>
-                <input type="file" name="image1" id="image1" onchange="postData('#image1','A')">
+                <input type="file" name="image1" id="image1" onchange="postData('#image1','A')" style="display: none;">
+                <button class="upload-A btn btn-pre btn-primary">上传文件</button>
                 <img class="A" src="" alt="">
+                <div class="load-animate hidden-upload-A">
+                    <p class="loading">上传中</p>
+                    <div class="loader-05">
+                    </div>
+                </div>
             </div>
             <div class="single_wraper">
                 <h3>图片B</h3>
-                <input type="file" name="image2" id="image2" onchange="postData('#image2','B')">
+                <input type="file" name="image2" id="image2" onchange="postData('#image2','B')" style="display: none;">
+                <button class="upload-B btn btn-pre btn-primary">上传文件</button>
                 <img class="B" src="" alt="">
+                <div class="load-animate hidden-upload-B">
+                    <p class="loading">上传中</p>
+                    <div class="loader-05">
+                    </div>
+                </div>
             </div>
             <div class="single_wraper">
                 <h3>变化预测</h3>
                 <button class="predict btn btn-pre btn-primary">预测</button>
                 <img class="pre" src="" alt="">
+                <div class="load-animate hidden-predict">
+                    <p class="loading">检测中</p>
+                    <div class="loader-05">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -157,6 +248,9 @@
             var formData = new FormData();
             formData.append("image", $(type)[0].files[0]);
             formData.append("type", dir)
+            $('.upload-' + dir).attr('disabled', true)
+            $('.' + dir).css('display', 'none')
+            $('.hidden-upload-' + dir).css('display', 'inline-block')
             $.ajax({
                 url: "/product/DeChangeUpLoadFiles",
                 type: "post",
@@ -166,8 +260,11 @@
                 dataType: '',
                 success: function (data) {
                     // var params = JSON.parse(data)
+                    $('.' + dir).css('display', 'inline-block')
+                    $('.hidden-upload-' + dir).css('display', 'none')
                     $('.' + dir).attr("src", data.src);
                     console.log(data);
+                    $('.upload-' + dir).attr('disabled', false)
                 },
                 error: function (data) {
 
@@ -179,6 +276,9 @@
             var formData = new FormData();
             formData.append("image1", $('.A').attr("src"));
             formData.append("image2", $('.B').attr("src"));
+            $('.predict').attr('disabled', true)
+            $('.pre').css('display', 'none')
+            $('.hidden-predict').css('display', 'inline-block')
             $.ajax({
                 url: "/product/DeChange",
                 type: "post",
@@ -188,8 +288,11 @@
                 dataType: '',
                 success: function (data) {
                     // var params = JSON.parse(data)
+                    $('.pre').css('display', 'inline-block')
+                    $('.hidden-predict').css('display', 'none')
                     $('.pre').attr("src", data.src);
                     console.log(data);
+                    $('.predict').attr('disabled', false)
                 },
                 error: function (data) {
 
@@ -197,7 +300,16 @@
             });
         }
 
+        $('.upload-A').click(function () {
+            $('#image1').click()
+        })
+
+        $('.upload-B').click(function () {
+            $('#image2').click()
+        })
+
         $('.predict').click(function () {
+            $('.predict').attr('disabled', true)
             predict()
         })
     </script>

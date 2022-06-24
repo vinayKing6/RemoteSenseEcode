@@ -1,0 +1,48 @@
+*.pdiparams
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+./src/main/resources/static/python/1024x1024
+./src/main/resources/static/python/1500x1500
+./src/main/resources/static/python/256x256
+./src/main/resources/static/python/608x608_playground
+*.pdiparams
+
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+/src/main/resources/static/python/1500x1500/
+/src/main/resources/static/python/1024x1024/
+/src/main/resources/static/python/608x608_playground/
+/src/main/resources/static/python/256x256/
+/src/main/resources/static/python/608x608_aircraft/
+/src/main/resources/static/python/608x608_oiltank/
+/src/main/resources/static/python/608x608_overpass/
