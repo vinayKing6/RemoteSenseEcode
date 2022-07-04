@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FirstSpringBootApplication {
 
 	public static void main(String[] args) {
-//		Thread thread=new Thread(new RuntimePython());
-//		thread.start();
+		Thread thread=new Thread(new RuntimePython());
+		thread.start();
 		//new RuntimePython().run();
 		SpringApplication.run(FirstSpringBootApplication.class, args);
 	}
